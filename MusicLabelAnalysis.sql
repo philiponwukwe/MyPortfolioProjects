@@ -6,9 +6,9 @@ CREATE DATABASE Music_Ent;
 
 USE Music_Ent;
 
--- We will be creating three different tables for this project namely "Music_Label", "Projects", "Songs".
+-- We will be creating three different tables for this project namely "music_team", "Projects", "Songs".
 
-CREATE TABLE music_label
+CREATE TABLE music_team
 	( id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 		name VARCHAR(255) NOT NULL,);
 
@@ -17,9 +17,9 @@ CREATE TABLE projects (
     id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     launch_year INT,
-    music_label_id INT NOT NULL,
-    FOREIGN KEY (music_label_id)
-        REFERENCES music_label (id));
+    music_team_id INT NOT NULL,
+    FOREIGN KEY (music_team_id)
+        REFERENCES music_team (id));
 
 CREATE TABLE songs (
     id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
@@ -33,38 +33,38 @@ CREATE TABLE songs (
 -- the values we want in them, but before then we will have to turn on Identity_insert and off
 -- when we are done (we have to repeat this for all 3 tables).
 
-SET IDENTITY_INSERT dbo.music_label ON;
+SET IDENTITY_INSERT dbo.music_team ON;
 
-INSERT INTO music_label(id,name) VALUES (1,'Seventh Wonder');
-INSERT INTO music_label(id,name) VALUES (2,'Metallica');
-INSERT INTO music_label(id,name) VALUES (3,'The Ocean');
-INSERT INTO music_label(id,name) VALUES (4,'Within Temptation');
-INSERT INTO music_label(id,name) VALUES (5,'Death');
-INSERT INTO music_label(id,name) VALUES (6,'Van Canto');
-INSERT INTO music_label(id,name) VALUES (7,'Dream Theater');
+INSERT INTO music_team(id,name) VALUES (1,'Seventh Wonder');
+INSERT INTO music_team(id,name) VALUES (2,'Metallica');
+INSERT INTO music_team(id,name) VALUES (3,'The Ocean');
+INSERT INTO music_team(id,name) VALUES (4,'Within Temptation');
+INSERT INTO music_team(id,name) VALUES (5,'Death');
+INSERT INTO music_team(id,name) VALUES (6,'Van Canto');
+INSERT INTO music_team(id,name) VALUES (7,'Dream Theater');
 
-SET IDENTITY_INSERT dbo.music_label OFF;
+SET IDENTITY_INSERT dbo.music_team OFF;
 
 SET IDENTITY_INSERT dbo.PROJECTS ON;
 
-INSERT INTO projects(id,title,launch_year,music_label_id) VALUES (1,'Tiara',2018,1);
-INSERT INTO projects(id,title,launch_year,music_label_id) VALUES (2,'The Great Escape',2010,1);
-INSERT INTO projects(id,title,launch_year,music_label_id) VALUES (3,'Mercy Falls',2008,1);
-INSERT INTO projects(id,title,launch_year,music_label_id) VALUES (4,'Master of Puppets',1986,2);
-INSERT INTO projects(id,title,launch_year,music_label_id) VALUES (5,'...And Justice for All',1988,2);
-INSERT INTO projects(id,title,launch_year,music_label_id) VALUES (6,'Death Magnetic',2008,2);
-INSERT INTO projects(id,title,launch_year,music_label_id) VALUES (7,'Heliocentric',2010,3);
-INSERT INTO projects(id,title,launch_year,music_label_id) VALUES (8,'Pelagial',2013,3);
-INSERT INTO projects(id,title,launch_year,music_label_id) VALUES (9,'Anthropocentric',2010,3);
-INSERT INTO projects(id,title,launch_year,music_label_id) VALUES (10,'Resist',2018,4);
-INSERT INTO projects(id,title,launch_year,music_label_id) VALUES (11,'The Unforgiving',2011,4);
-INSERT INTO projects(id,title,launch_year,music_label_id) VALUES (12,'Enter',1997,4);
-INSERT INTO projects(id,title,launch_year,music_label_id) VALUES (13,'The Sound of Perseverance',1998,5);
-INSERT INTO projects(id,title,launch_year,music_label_id) VALUES (14,'Individual Thought Patterns',1993,5);
-INSERT INTO projects(id,title,launch_year,music_label_id) VALUES (15,'Human',1991,5);
-INSERT INTO projects(id,title,launch_year,music_label_id) VALUES (16,'A Storm to Come',2006,6);
-INSERT INTO projects(id,title,launch_year,music_label_id) VALUES (17,'Break the Silence',2011,6);
-INSERT INTO projects(id,title,launch_year,music_label_id) VALUES (18,'Tribe of Force',2010,6);
+INSERT INTO projects(id,title,launch_year,music_team_id) VALUES (1,'Tiara',2018,1);
+INSERT INTO projects(id,title,launch_year,music_team_id) VALUES (2,'The Great Escape',2010,1);
+INSERT INTO projects(id,title,launch_year,music_team_id) VALUES (3,'Mercy Falls',2008,1);
+INSERT INTO projects(id,title,launch_year,music_team_id) VALUES (4,'Master of Puppets',1986,2);
+INSERT INTO projects(id,title,launch_year,music_team_id) VALUES (5,'...And Justice for All',1988,2);
+INSERT INTO projects(id,title,launch_year,music_team_id) VALUES (6,'Death Magnetic',2008,2);
+INSERT INTO projects(id,title,launch_year,music_team_id) VALUES (7,'Heliocentric',2010,3);
+INSERT INTO projects(id,title,launch_year,music_team_id) VALUES (8,'Pelagial',2013,3);
+INSERT INTO projects(id,title,launch_year,music_team_id) VALUES (9,'Anthropocentric',2010,3);
+INSERT INTO projects(id,title,launch_year,music_team_id) VALUES (10,'Resist',2018,4);
+INSERT INTO projects(id,title,launch_year,music_team_id) VALUES (11,'The Unforgiving',2011,4);
+INSERT INTO projects(id,title,launch_year,music_team_id) VALUES (12,'Enter',1997,4);
+INSERT INTO projects(id,title,launch_year,music_team_id) VALUES (13,'The Sound of Perseverance',1998,5);
+INSERT INTO projects(id,title,launch_year,music_team_id) VALUES (14,'Individual Thought Patterns',1993,5);
+INSERT INTO projects(id,title,launch_year,music_team_id) VALUES (15,'Human',1991,5);
+INSERT INTO projects(id,title,launch_year,music_team_id) VALUES (16,'A Storm to Come',2006,6);
+INSERT INTO projects(id,title,launch_year,music_team_id) VALUES (17,'Break the Silence',2011,6);
+INSERT INTO projects(id,title,launch_year,music_team_id) VALUES (18,'Tribe of Force',2010,6);
 
 SET IDENTITY_INSERT dbo.projects OFF;
 
@@ -259,7 +259,7 @@ SET IDENTITY_INSERT dbo.songs OFF;
 -- all correctly.
 
 SELECT * 
-	FROM dbo.music_label;
+	FROM dbo.music_team;
 
 SELECT * 
 	FROM dbo.projects;
@@ -321,12 +321,12 @@ FROM dbo.songs
 -- Getting the number of songs recorded by each music label (we will be doing multiple joins on this one).
 
 SELECT 
-    music_label.name AS 'Team',
+    music_team.name AS 'Team',
     COUNT(songs.id) AS 'Number of songs'
 FROM
-    dbo.music_label
+    dbo.music_team
         JOIN
-    projects ON music_label.id = projects.music_label_id
+    projects ON music_team.id = projects.music_team_id
         JOIN
     songs ON projects.id = songs.project_id
-GROUP BY music_label.name;
+GROUP BY music_team.name;
